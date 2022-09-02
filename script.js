@@ -19,23 +19,47 @@ const gameBoard = (() => {
 })();
 
 
-
 /* players stored in objects / factory */
 const playerFactory= (name, icon) => {
     return { name, icon };
 }
 
+
 /* test players */
 const abby = playerFactory("Abbaddon", "x")
 const dick = playerFactory("Dick Roman", "o")
 
+
+
 /* object to control the flow of the game itself 
-    ?
+    a. enter player names - default to player 1 and 2
+    b. assign icon 
+    1. first move to x? 
+    2. display whose move it is and their icon
+    3. on click on cell (grid item) enter current players icon - disable click on cell already filled
+    4. repeat for other player (how do i determine player, var with number and if(odd or even))
+    5. when win condition is fullfilled or no empty strings remain - determine winner and display
 */
 
-/* set up your HTML and write JS to render to webpage */
+/* set up your HTML and write JS to render to webpage 
+    ALWAYS: 
+        title
+        gameboard 
+    
+    BEFORE GAME: 
+        button - start 
 
-/* function that allow players to add marks to specific spots on the board, tie to DOM, w/ logic prevents already occuptied spots */
+    START BUTTON PRESSED: 
+        fill in player names
+
+    DURING GAME: 
+        button - restart
+        display turn and icon
+    
+    AFTER GAME: 
+        button - restart 
+        game results
+*/
 
 /* logic that determines end of game */
 /* Manual or is it possible automatic w maths?
@@ -57,13 +81,11 @@ if ($LOGIC THAT DETERMINES WINNER) {
     displayRes("Ingen vann, ingen var värdig...")
 }
 
-
 function to display results
 function displayRes(string) {
-
 }
-
 */
+
 
 /* clean up interface: 
 allow players to put in their name
