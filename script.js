@@ -2,14 +2,15 @@
 
 
 /* store gameboard as array inside of a gameboard object
-    0   1   2
-    3   4   5
-    6   7   8
-*/
+    maybe store inside three inner arrays? is that even needed? could compare against each other easier maybe
+        0   1   2
+        3   4   5
+        6   7   8       */
 const gameBoard = (() => {
     const arr = ["", "", "", "", "", "", "", "", ""];
     const add = (icon, position) => arr[position] = icon /* replace array index with icon */
-    const clear = () => arr = ["", "", "", "", "", "", "", "", ""]; /* clears array */
+    const clear = () => {for (let i = 0; i < arr.length; i++) { /* clears array */
+        arr[i] = "" }} 
     return {
         add, 
         clear, 
@@ -19,10 +20,14 @@ const gameBoard = (() => {
 
 
 
-/* players stored in objects / factory
-    randomly assigned x / o 
-    name property
-*/
+/* players stored in objects / factory */
+const playerFactory= (name, icon) => {
+    return { name, icon };
+}
+
+/* test players */
+const abby = playerFactory("Abbaddon", "x")
+const dick = playerFactory("Dick Roman", "o")
 
 /* object to control the flow of the game itself 
     ?
