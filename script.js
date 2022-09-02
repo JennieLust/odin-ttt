@@ -2,18 +2,21 @@
 
 
 /* store gameboard as array inside of a gameboard object
-    maybe store inside three inner arrays? is that even needed? could compare against each other easier maybe
-        0   1   2
-        3   4   5
-        6   7   8
-
-    Object - by using module
-
-    let gameBoard = ["", "", "", "", "", "", "", "", ""];
-
-    empty string = non-selected cell
-    x / o
+    0   1   2
+    3   4   5
+    6   7   8
 */
+const gameBoard = (() => {
+    const arr = ["", "", "", "", "", "", "", "", ""];
+    const add = (icon, position) => arr[position] = icon /* replace array index with icon */
+    const clear = () => arr = ["", "", "", "", "", "", "", "", ""]; /* clears array */
+    return {
+        add, 
+        clear, 
+        arr, 
+    };
+})();
+
 
 
 /* players stored in objects / factory
@@ -42,7 +45,20 @@ if (x or o) is index following, x or o wins:
     2, 4, 6
 
 check for tie [if all cells filled but none fullfills win conditions - draw]
-    */
+   
+if ($LOGIC THAT DETERMINES WINNER) {
+    displayRes("Spelare $PLAYERNAME vann! Gratulationer, jag visste att det skulle vara du! Jag är så stolt!")" 
+} else {
+    displayRes("Ingen vann, ingen var värdig...")
+}
+
+
+function to display results
+function displayRes(string) {
+
+}
+
+*/
 
 /* clean up interface: 
 allow players to put in their name
