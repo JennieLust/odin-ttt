@@ -12,9 +12,16 @@ const cell7 = document.querySelector(".cell-7")
 const cell8 = document.querySelector(".cell-8")
 
 const startButton = document.querySelector(".start-btn");
+const p1Info = document.querySelector(".player-1-info");
+const p2Info = document.querySelector(".player-2-info");
+const p1Button = document.querySelector(".p1-button");
+const p2Button = document.querySelector(".p2-button")
+
 
 startButton.addEventListener('click', () => {
     if (startButton.innerText === "SPELA") {
+        p1Info.style.visibility = "visible";
+        p2Info.style.visibility = "visible";
         /* Maybe own function ?
         show player info form 
         enter into variables etc
@@ -23,6 +30,8 @@ startButton.addEventListener('click', () => {
     } else if (startButton.innerText === "BÖRJA OM") {
         gameBoard.clear();
         startButton.innerHTML = "SPELA"
+        p1Info.style.visibility = "hidden";
+        p2Info.style.visibility = "hidden";
     }
 });
 

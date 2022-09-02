@@ -33,7 +33,7 @@ body {
     font-size: 20px;
     border: 1px solid rgb(190, 190, 190);
     color:rgb(65, 65, 65);
-    width: 100px;
+    width: 140px;
     height: 30px;
 }
 
@@ -72,6 +72,7 @@ body {
     min-height: 400px;
     font-size: 25px;
     text-transform: uppercase;
+    visibility: hidden;
 }
 
 .player-1-info {
@@ -82,4 +83,22 @@ body {
 .player-2-info {
     justify-self: flex-end;
     text-align: end;
+}
+
+.p1-button, .p2-button {
+background-color: rgb(190, 190, 190);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    border: 1px solid rgb(190, 190, 190);
+    color:rgb(65, 65, 65);
+    width: 70px;
+    height: 27px;
+}
+
+.p1-form > input, .p2-form > input {
+    background-color: rgba(190, 190, 190, 0.212);
+    border: 1px solid rgb(190, 190, 190);
+    height: 25px;
+    color: rgb(190, 190, 190);
+    font-family: 'Courier New', Courier, monospace;
 }
