@@ -1,5 +1,30 @@
 /*              GOAL: as little global code as possible         */
 
+const gameContainer = document.querySelector(".game-container")
+const cell0 = document.querySelector(".cell-0")
+const cell1 = document.querySelector(".cell-1")
+const cell2 = document.querySelector(".cell-2")
+const cell3 = document.querySelector(".cell-3")
+const cell4 = document.querySelector(".cell-4")
+const cell5 = document.querySelector(".cell-5")
+const cell6 = document.querySelector(".cell-6")
+const cell7 = document.querySelector(".cell-7")
+const cell8 = document.querySelector(".cell-8")
+
+const startButton = document.querySelector(".start-btn");
+
+startButton.addEventListener('click', () => {
+    if (startButton.innerText === "SPELA") {
+        /* Maybe own function ?
+        show player info form 
+        enter into variables etc
+        change innerText to "BÖRJA OM" */
+        startButton.innerText = "BÖRJA OM"
+    } else if (startButton.innerText === "BÖRJA OM") {
+        gameBoard.clear();
+        startButton.innerHTML = "SPELA"
+    }
+});
 
 /* store gameboard as array inside of a gameboard object
     maybe store inside three inner arrays? is that even needed? could compare against each other easier maybe
@@ -11,12 +36,28 @@ const gameBoard = (() => {
     const add = (icon, position) => arr[position] = icon /* replace array index with icon */
     const clear = () => {for (let i = 0; i < arr.length; i++) { /* clears array */
         arr[i] = "" }} 
+    /* display function */
+    const display = () => {
+        cell0.innerText = arr[0];
+        cell1.innerText = arr[1];
+        cell2.innerText = arr[2];
+        cell3.innerText = arr[3];
+        cell4.innerText = arr[4];
+        cell5.innerText = arr[5];
+        cell6.innerText = arr[6];
+        cell7.innerText = arr[7];
+        cell8.innerText = arr[8];
+    }
     return {
         add, 
         clear, 
         arr, 
+        display,
     };
 })();
+
+
+gameBoard.display();
 
 
 /* players stored in objects / factory */
@@ -25,11 +66,10 @@ const playerFactory= (name, icon) => {
 }
 
 
-/* test players */
+/* test players
 const abby = playerFactory("Abbaddon", "x")
 const dick = playerFactory("Dick Roman", "o")
-
-
+ */
 
 /* object to control the flow of the game itself 
     a. enter player names - default to player 1 and 2

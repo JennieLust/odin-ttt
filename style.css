@@ -1,4 +1,85 @@
 body {
     margin: 0;
-    background-color: slategray;
+    background: rgb(60,44,51);
+    background: linear-gradient(0deg, rgba(60,44,51,1) 0%, rgba(38,49,61,1) 100%);
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-attachment: fixed;
+    gap: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(190, 190, 190);
+}
+
+.middle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-attachment: fixed;
+    gap: 20px;
+}
+
+.title {
+    text-transform: uppercase;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 5px;
+    color:rgb(190, 190, 190);
+}
+
+.start-btn {
+    background-color: rgb(190, 190, 190);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    border: 1px solid rgb(190, 190, 190);
+    color:rgb(65, 65, 65);
+    width: 100px;
+    height: 30px;
+}
+
+.start-btn:hover {
+    background-color: rgba(190, 190, 190, 0.363);
+    color:rgb(190, 190, 190);
+}
+
+.game-container {
+    display: grid;
+    grid-template-columns: 80px 80px 80px;
+    grid-template-rows: 80px 80px 80px;
+    gap: 10px;
+
+}
+
+.game-container > div {
+    border: 2px solid rgb(190, 190, 190);
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    color:rgb(190, 190, 190)
+}
+
+.game-container > div:hover {
+    background-color: rgba(190, 190, 190, 0.363);
+    border: 2px outset rgb(190, 190, 190);
+}
+
+.player-1-info, .player-2-info {
+    align-self: flex-start;
+    padding-top: 70px;
+    min-width: 30%;
+    min-height: 400px;
+    font-size: 25px;
+    text-transform: uppercase;
+}
+
+.player-1-info {
+    justify-self: flex-start;
+    text-align: start;
+}
+
+.player-2-info {
+    justify-self: flex-end;
+    text-align: end;
 }
