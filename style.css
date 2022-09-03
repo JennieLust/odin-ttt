@@ -102,3 +102,13 @@ background-color: rgb(190, 190, 190);
     color: rgb(190, 190, 190);
     font-family: 'Courier New', Courier, monospace;
 }
+
+.p1-form > input:hover, .p2-form > input:hover {
+    background-color: rgba(190, 190, 190, 0.363);
+    color:rgb(190, 190, 190);
+};
+
+.p1-button:hover, .p2-button:hover {
+    background-color: rgba(190, 190, 190, 0.363);
+    color:rgb(190, 190, 190);
+}
