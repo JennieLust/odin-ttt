@@ -17,23 +17,58 @@ const p2Info = document.querySelector(".player-2-info");
 const p1Button = document.querySelector(".p1-button");
 const p2Button = document.querySelector(".p2-button")
 
+var p1Icon = ""
+var p2Icon = ""
 
 startButton.addEventListener('click', () => {
     if (startButton.innerText === "SPELA") {
         p1Info.style.visibility = "visible";
         p2Info.style.visibility = "visible";
-        /* Maybe own function ?
-        show player info form 
-        enter into variables etc
-        change innerText to "BÖRJA OM" */
+        p2Button.addEventListener('click', () => {
+            var p2Name = document.querySelector('.p2-name').value;
+            document.querySelector(".p2-form").style.display = "none";
+            var p2NameDis = document.createElement("p");
+            p2NameDis.innerText = p2Name;
+            p2Info.appendChild(p2NameDis);
+            if (p1Icon === "x") {
+                p2Icon = "o"
+            } else {
+                p2Icon = "x";
+            };
+            var p2IconDis = document.createElement("p");
+            p2IconDis.innerText= "spelar med " + p2Icon;
+            p2Info.appendChild(p2IconDis);
+
+        })
+        p1Button.addEventListener('click', () => {
+            var p1Name = document.querySelector('.p1-name').value;
+            document.querySelector(".p1-form").style.display = "none";
+            var p1NameDis = document.createElement("p");
+            p1NameDis.innerText = p1Name;
+            p1Info.appendChild(p1NameDis);
+
+            /* rand icon assignment */
+            p1Icon = assignIcon();
+            var p1IconDis = document.createElement("p");
+            p1IconDis.innerText= "spelar med " + p1Icon;
+            p1Info.appendChild(p1IconDis);
+        })
         startButton.innerText = "BÖRJA OM"
     } else if (startButton.innerText === "BÖRJA OM") {
         gameBoard.clear();
         startButton.innerHTML = "SPELA"
         p1Info.style.visibility = "hidden";
         p2Info.style.visibility = "hidden";
-    }
+    }   
 });
+
+function assignIcon() {
+    if (Math.floor(Math.random() * 2) === 0) {
+        return "x"
+    } else {
+        return "o"
+    }
+}
 
 /* store gameboard as array inside of a gameboard object
     maybe store inside three inner arrays? is that even needed? could compare against each other easier maybe
@@ -108,6 +143,7 @@ const dick = playerFactory("Dick Roman", "o")
     AFTER GAME: 
         button - restart 
         game results
+
 */
 
 /* logic that determines end of game */
