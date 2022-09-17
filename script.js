@@ -10,8 +10,8 @@
     Object for game flow
         - done - if x - player starts
         display on screen 
-        when div pressed - innerhtml their icon (where do I add eventlistener?)
-        next players turn (keep track w i++ odd or even?) (done, but needs functional incrementing)
+        - done - when div pressed - innerhtml their icon (where do I add eventlistener?)
+        - done - next players turn (keep track w i++ odd or even?) (done, but needs functional incrementing)
         when three turns - start determining if game fullfills winning conditiion
         when no empty squares remain / after 9 turns an no win condition fullfillment -> draw
         determine who won if win condition fullfilled 
@@ -154,7 +154,6 @@ const gameBoard = (() => {
 })();
 
 
-/* works but not displaying it */
 const game = function() {
     let gameTurn = 1;
     
@@ -166,56 +165,77 @@ const game = function() {
             currentIcon = "x"
             p2Turn.style.visibility = "hidden";
             p1Turn.style.visibility = "visible";
-            console.log("x turn")
         } else {
             currentIcon = "o"
             p2Turn.style.visibility = "visible";
             p1Turn.style.visibility = "hidden";
-            console.log("o turn")
     }
     return currentIcon;
     }
 
     /* move function */
-    let move = function (cell) {
+    let move = function (cell, index) {
         if (cell.innerText === "") {
             cell.innerText = iconify();
+            gameBoard.add(iconify(), index);
+            if (gameTurn > 3) {
+                checkWinner(iconify());
+            }
             gameTurn = gameTurn + 1;
+  
         } else {
             alert("You cannot choose an occupied square. Please choose another move.")
         }
+        /* determines if check-for-winner function should be called */
+
+    }
+
+    /* function that checks for winning combinations */
+    let checkWinner = function (icon) {
+        /* function to shorten code - tests gameboard condition against patterns */
+        let checkPattern = function (icon, index1, index2, index3) {
+            if (gameBoard.arr[index1] === icon && gameBoard.arr[index2] === icon && gameBoard.arr[index3] === icon) {
+                /* Do winner decleration */
+                console.log("yeah")
+            }};
+        checkPattern(icon, 0, 3, 6);
+        checkPattern(icon, 2, 4, 7);
+        checkPattern(icon, 2, 5, 8);
+        checkPattern(icon, 0, 1, 2);
+        checkPattern(icon, 3, 4, 5);
+        checkPattern(icon, 6, 7, 8);
+        checkPattern(icon, 0, 4, 8);
+        checkPattern(icon, 2, 4, 6);
     }
 
 
+    /* event listeners */
     cell0.addEventListener('click', () => {
-        move(cell0)
+        move(cell0, 0)
     });
     cell1.addEventListener('click', () => {
-        move(cell1)
+        move(cell1, 1)
     });
     cell2.addEventListener('click', () => {
-        move(cell2)
+        move(cell2, 2)
     });
     cell3.addEventListener('click', () => {
-        move(cell3)
+        move(cell3, 3)
     });
     cell4.addEventListener('click', () => {
-        move(cell4)
+        move(cell4, 4)
     });
     cell5.addEventListener('click', () => {
-        move(cell5)
+        move(cell5, 5)
     });
     cell6.addEventListener('click', () => {
-        move(cell6)
+        move(cell6, 6)
     });
     cell7.addEventListener('click', () => {
-        move(cell7)
+        move(cell7, 7)
     });
     cell8.addEventListener('click', () => {
-        move(cell8)
-    });
-    cell9.addEventListener('click', () => {
-        move(cell9)
+        move(cell8, 8)
     });
 
 
@@ -223,6 +243,14 @@ const game = function() {
 
 
 }
+
+
+
+
+
+
+
+
 
 gameBoard.display();
 
@@ -275,15 +303,7 @@ const playerFactory = (name, icon) => {
 
 /* logic that determines end of game */
 /* Manual or is it possible automatic w maths?
-if (x or o) is index following, x or o wins:
-    0, 3, 6
-    1, 4, 7
-    2, 5, 8
-    0, 1, 2
-    3, 4, 5
-    6, 7, 8
-    0, 4, 8
-    2, 4, 6
+
 
 check for tie [if all cells filled but none fullfills win conditions - draw]
    
