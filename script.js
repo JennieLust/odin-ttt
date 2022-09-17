@@ -1,12 +1,16 @@
 /*              GOAL: as little global code as possible         */
 
 /* TODO 
-    Clear names on "börja om"
+    BUG: 
+        Player Turn Display only shows up when pressing redo
+        On redo/restart, names remain entered - clear them
+
+
     Object for game flow
-        if x - player starts
+        - done - if x - player starts
         display on screen 
-        when div pressed - innerhtml their icon
-        next players turn (keep track w i++ odd or even?)
+        when div pressed - innerhtml their icon (where do I add eventlistener?)
+        next players turn (keep track w i++ odd or even?) (done, but needs functional incrementing)
         when three turns - start determining if game fullfills winning conditiion
         when no empty squares remain / after 9 turns an no win condition fullfillment -> draw
         determine who won if win condition fullfilled 
@@ -29,6 +33,11 @@ const p1Info = document.querySelector(".player-1-info");
 const p2Info = document.querySelector(".player-2-info");
 const p1Button = document.querySelector(".p1-button");
 const p2Button = document.querySelector(".p2-button")
+
+
+var p2Turn = document.createElement("p");
+var p1Turn = document.createElement("p");
+
 
 var p1Icon = ""
 var p2Icon = ""
@@ -59,11 +68,12 @@ startButton.addEventListener('click', () => {
             p2Info.appendChild(p2IconDis);
 
             /* creates turn signal which can be hidden/revealed */
-            var p2Turn = document.createElement("p");
+            
             p2Turn.innerText = `${p2.name}'s turn!`;
             p2Turn.style.fontWeight = "bold";
             p2Turn.style.visibility = "hidden";
             p2Info.appendChild(p2Turn);
+
 
         })
         p1Button.addEventListener('click', () => {
@@ -87,7 +97,7 @@ startButton.addEventListener('click', () => {
             p1Info.appendChild(p1IconDis);
 
              /* creates turn signal which can be hidden/revealed */
-            var p1Turn = document.createElement("p");
+            
             p1Turn.innerText = `${p1.name}'s turn!`;
             p1Turn.style.fontWeight = "bold";
             p1Turn.style.visibility = "hidden";
@@ -96,12 +106,20 @@ startButton.addEventListener('click', () => {
 
         })
         startButton.innerText = "BÖRJA OM"
+
+        /* if both names added */
+        
+
+        /* if none names added but a click has been made, still go through with calling game*/
+
     } else if (startButton.innerText === "BÖRJA OM") {
         gameBoard.clear();
         startButton.innerHTML = "SPELA"
         p1Info.style.visibility = "hidden";
         p2Info.style.visibility = "hidden";
     }   
+
+    game();
 });
 
 /* store gameboard as array inside of a gameboard object
@@ -135,7 +153,32 @@ const gameBoard = (() => {
 })();
 
 
+/* works but not displaying it */
+const game = function() {
+    let gameTurn = 1;
+    let currentIcon = "x"
+
+    if (gameTurn % 2 != 0) {
+        currentIcon = "x"
+        p2Turn.style.visibility = "hidden";
+        p1Turn.style.visibility = "visible";
+        console.log("x turn")
+    } else {
+        currentIcon = "o"
+    }
+
+
+
+
+
+}
+
 gameBoard.display();
+
+
+
+
+
 
 
 /* players stored in objects / factory */
@@ -149,6 +192,9 @@ const playerFactory = (name, icon) => {
     DONE a. enter player names - default to player 1 and 2
     DONE b. assign icon 
     1. first move to x? 
+
+    let moveCount = 1; 
+    if (moveCount %)
     2. display whose move it is and their icon
     3. on click on cell (grid item) enter current players icon - disable click on cell already filled
     4. repeat for other player (how do i determine player, var with number and if(odd or even))
