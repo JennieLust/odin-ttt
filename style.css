@@ -11,6 +11,19 @@ body {
     color: rgb(190, 190, 190);
 }
 
+.results {
+    position: absolute;
+    margin: auto;
+    margin-top: 250px;
+    z-index: 1;
+    color: rgb(119, 38, 38);
+    background-color: rgba(233, 233, 233, 0.534);
+    padding: 10px;
+    font-size: 50px;
+    font-weight: 600;
+    visibility: hidden;
+}
+
 .middle-container {
     display: flex;
     justify-content: center;
