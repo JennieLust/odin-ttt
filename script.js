@@ -4,6 +4,7 @@
     BUG: 
         Player Turn Display only shows up when pressing redo
         On redo/restart, names remain entered - clear them
+        Börja om does not clear gameboard 
 
 
     Object for game flow
@@ -156,16 +157,66 @@ const gameBoard = (() => {
 /* works but not displaying it */
 const game = function() {
     let gameTurn = 1;
-    let currentIcon = "x"
+    
 
-    if (gameTurn % 2 != 0) {
-        currentIcon = "x"
-        p2Turn.style.visibility = "hidden";
-        p1Turn.style.visibility = "visible";
-        console.log("x turn")
-    } else {
-        currentIcon = "o"
+    /* decides which icon/turn it is */
+    let iconify = function () {
+        let currentIcon = ""
+        if (gameTurn % 2 != 0) {
+            currentIcon = "x"
+            p2Turn.style.visibility = "hidden";
+            p1Turn.style.visibility = "visible";
+            console.log("x turn")
+        } else {
+            currentIcon = "o"
+            p2Turn.style.visibility = "visible";
+            p1Turn.style.visibility = "hidden";
+            console.log("o turn")
     }
+    return currentIcon;
+    }
+
+    /* move function */
+    let move = function (cell) {
+        if (cell.innerText === "") {
+            cell.innerText = iconify();
+            gameTurn = gameTurn + 1;
+        } else {
+            alert("You cannot choose an occupied square. Please choose another move.")
+        }
+    }
+
+
+    cell0.addEventListener('click', () => {
+        move(cell0)
+    });
+    cell1.addEventListener('click', () => {
+        move(cell1)
+    });
+    cell2.addEventListener('click', () => {
+        move(cell2)
+    });
+    cell3.addEventListener('click', () => {
+        move(cell3)
+    });
+    cell4.addEventListener('click', () => {
+        move(cell4)
+    });
+    cell5.addEventListener('click', () => {
+        move(cell5)
+    });
+    cell6.addEventListener('click', () => {
+        move(cell6)
+    });
+    cell7.addEventListener('click', () => {
+        move(cell7)
+    });
+    cell8.addEventListener('click', () => {
+        move(cell8)
+    });
+    cell9.addEventListener('click', () => {
+        move(cell9)
+    });
 
 
 
