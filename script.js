@@ -1,7 +1,7 @@
 /*              GOAL: as little global code as possible         */
 
 /* TODO 
-    change so players are created as objects
+    Clear names on "börja om"
     Object for game flow
         if x - player starts
         display on screen 
@@ -103,14 +103,6 @@ startButton.addEventListener('click', () => {
         p2Info.style.visibility = "hidden";
     }   
 });
-
-function assignIcon() {
-    if (Math.floor(Math.random() * 2) === 0) {
-        return "x"
-    } else {
-        return "o"
-    }
-}
 
 /* store gameboard as array inside of a gameboard object
     maybe store inside three inner arrays? is that even needed? could compare against each other easier maybe
