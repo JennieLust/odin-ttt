@@ -1,5 +1,18 @@
 /*              GOAL: as little global code as possible         */
 
+/* TODO 
+    change so players are created as objects
+    Object for game flow
+        if x - player starts
+        display on screen 
+        when div pressed - innerhtml their icon
+        next players turn (keep track w i++ odd or even?)
+        when three turns - start determining if game fullfills winning conditiion
+        when no empty squares remain / after 9 turns an no win condition fullfillment -> draw
+        determine who won if win condition fullfilled 
+    display results
+    */
+
 const gameContainer = document.querySelector(".game-container")
 const cell0 = document.querySelector(".cell-0")
 const cell1 = document.querySelector(".cell-1")
@@ -19,39 +32,68 @@ const p2Button = document.querySelector(".p2-button")
 
 var p1Icon = ""
 var p2Icon = ""
-
+/* change so players are created as objects*/
 startButton.addEventListener('click', () => {
     if (startButton.innerText === "SPELA") {
+        /* pop up info-sidebars */
         p1Info.style.visibility = "visible";
         p2Info.style.visibility = "visible";
+
         p2Button.addEventListener('click', () => {
             var p2Name = document.querySelector('.p2-name').value;
-            document.querySelector(".p2-form").style.display = "none";
-            var p2NameDis = document.createElement("p");
-            p2NameDis.innerText = p2Name;
-            p2Info.appendChild(p2NameDis);
-            if (p1Icon === "x") {
-                p2Icon = "o"
-            } else {
-                p2Icon = "x";
+            /* set default name*/
+            if (p2Name.length < 1) {
+                p2Name = "Player 2"
             };
+            const p2 = playerFactory(p2Name, "o");
+
+            /* hides pop up form */
+            document.querySelector(".p2-form").style.display = "none";
+
+            /* creates html display elements */
+            var p2NameDis = document.createElement("p");
+            p2NameDis.innerText = p2.name;
+            p2Info.appendChild(p2NameDis);
             var p2IconDis = document.createElement("p");
-            p2IconDis.innerText= "spelar med " + p2Icon;
+            p2IconDis.innerText= "spelar med " + p2.icon;
             p2Info.appendChild(p2IconDis);
+
+            /* creates turn signal which can be hidden/revealed */
+            var p2Turn = document.createElement("p");
+            p2Turn.innerText = `${p2.name}'s turn!`;
+            p2Turn.style.fontWeight = "bold";
+            p2Turn.style.visibility = "hidden";
+            p2Info.appendChild(p2Turn);
 
         })
         p1Button.addEventListener('click', () => {
             var p1Name = document.querySelector('.p1-name').value;
-            document.querySelector(".p1-form").style.display = "none";
-            var p1NameDis = document.createElement("p");
-            p1NameDis.innerText = p1Name;
-            p1Info.appendChild(p1NameDis);
 
-            /* rand icon assignment */
-            p1Icon = assignIcon();
+            /* set default name*/
+            if (p1Name.length < 1) {
+                p1Name = "Player 1"
+            };
+            const p1 = playerFactory(p1Name, "x");
+
+            /* hides pop up form */
+            document.querySelector(".p1-form").style.display = "none";
+
+            /* creates html display elements */
+            var p1NameDis = document.createElement("p");
+            p1NameDis.innerText = p1.name;
+            p1Info.appendChild(p1NameDis);
             var p1IconDis = document.createElement("p");
-            p1IconDis.innerText= "spelar med " + p1Icon;
+            p1IconDis.innerText= "spelar med " + p1.icon;
             p1Info.appendChild(p1IconDis);
+
+             /* creates turn signal which can be hidden/revealed */
+            var p1Turn = document.createElement("p");
+            p1Turn.innerText = `${p1.name}'s turn!`;
+            p1Turn.style.fontWeight = "bold";
+            p1Turn.style.visibility = "hidden";
+            p1Info.appendChild(p1Turn);
+
+
         })
         startButton.innerText = "BÖRJA OM"
     } else if (startButton.innerText === "BÖRJA OM") {
@@ -105,19 +147,15 @@ gameBoard.display();
 
 
 /* players stored in objects / factory */
-const playerFactory= (name, icon) => {
+const playerFactory = (name, icon) => {
     return { name, icon };
 }
 
-
-/* test players
-const abby = playerFactory("Abbaddon", "x")
-const dick = playerFactory("Dick Roman", "o")
- */
+/* how would an object control the flow of the game? 
 
 /* object to control the flow of the game itself 
-    a. enter player names - default to player 1 and 2
-    b. assign icon 
+    DONE a. enter player names - default to player 1 and 2
+    DONE b. assign icon 
     1. first move to x? 
     2. display whose move it is and their icon
     3. on click on cell (grid item) enter current players icon - disable click on cell already filled
@@ -126,19 +164,19 @@ const dick = playerFactory("Dick Roman", "o")
 */
 
 /* set up your HTML and write JS to render to webpage 
-    ALWAYS: 
-        title
-        gameboard 
+    - ALWAYS: 
+        -title
+        -gameboard 
     
-    BEFORE GAME: 
-        button - start 
+    -BEFORE GAME: 
+        -button - start 
 
-    START BUTTON PRESSED: 
-        fill in player names
+    -START BUTTON PRESSED: 
+        -fill in player names
 
-    DURING GAME: 
-        button - restart
-        display turn and icon
+    -DURING GAME: 
+        -button - restart (not fully functional)
+        display turn and -icon
     
     AFTER GAME: 
         button - restart 
